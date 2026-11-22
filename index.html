@@ -40,7 +40,8 @@ button, select { font-family: inherit; }
 .hero-logos { display: flex; align-items: center; gap: 16px; }
 .hero-logos .dg { height: 46px; width: auto; }
 .hero-logos .sep { width: 1px; height: 34px; background: var(--line); }
-.hero-logos .um { height: 26px; width: auto; filter: brightness(0) saturate(100%) invert(19%) sepia(43%) saturate(1800%) hue-rotate(205deg) brightness(92%); }
+.hero-logos .um-plate { background: var(--navy); border-radius: 12px; padding: 10px 16px; display: grid; place-items: center; }
+.hero-logos .um { height: 26px; width: auto; display: block; }
 .hero-txt { padding: 28px 32px; display: flex; flex-direction: column; gap: 12px; }
 .hero-logo { height: 32px; width: auto; align-self: flex-start; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -227,7 +228,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
 <main class="wrap">
   <header class="hero" id="resumen">
     <div class="hero-txt">
-      <div class="hero-logos"><img class="um" src="img/logo_cccp_um.png" alt="CCCP | UM"><span class="sep"></span><img class="dg" src="img/logos/dicegsa.png" alt="Dicegsa"></div>
+      <div class="hero-logos"><span class="um-plate"><img class="um" src="img/logo_cccp_um.png" alt="CCCP | UM"></span><span class="sep"></span><img class="dg" src="img/logos/dicegsa.png" alt="Dicegsa"></div>
       <div class="tags"><span class="tag">Meta · Facebook, Instagram y WhatsApp</span><span class="tag">Nicaragua · Noviembre 2026</span></div>
       <h1><span>Campañas de mantenimiento · Alcance</span>Listerine, Lubriderm e Hipoglós Sport</h1>
       <p class="lead" id="lead">—</p>
@@ -337,7 +338,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
     ['Frecuencia', 'var(--cyan)', `La frecuencia se mantiene baja (Listerine <b>${F.d2(lis.frecuencia)}</b>, Lubriderm <b>${F.d2(lub.frecuencia)}</b>): las campañas priorizan llegar a más personas antes que repetir el mensaje.`],
     ['Creativos', COL['Listerine'], `En Listerine, <b>${top(lis)[0].replace(/_/g, ' ')}</b> concentra el <b>${F.pct(top(lis)[1])}</b> de las impresiones; en Lubriderm, <b>${top(lub)[0].replace(/_/g, ' ')}</b> lleva el <b>${F.pct(top(lub)[1])}</b>.`],
     ['WhatsApp', 'var(--c-wa)', `WhatsApp aporta el <b>${F.pct(wa(hip))}</b> de las impresiones de Hipoglós Sport, frente al ${F.pct(wa(lis))} en Listerine y ${F.pct(wa(lub))} en Lubriderm.`],
-    ['Audiencia', COL['Lubriderm'], `El público de <b>18-24</b> es el de mayor alcance en las tres marcas. Lubriderm y Hipoglós Sport llegan más a mujeres; Listerine, más a hombres.`]
+    ['Audiencia', COL['Lubriderm'], (() => { const gv = (m, g) => (m.audiencia.find((r) => r.dimension === 'Género' && r.segmento === g) || {}).valor || 0; const muj = M.filter((m) => gv(m, 'Mujer') > gv(m, 'Hombre')).map((m) => m.marca), hom = M.filter((m) => gv(m, 'Mujer') <= gv(m, 'Hombre')).map((m) => m.marca); const y = (a) => a.length > 1 ? a.slice(0, -1).join(', ') + ' y ' + a[a.length - 1] : a[0]; return `El público de <b>18-24</b> es el de mayor alcance en las tres marcas. ` + (muj.length ? `${y(muj)} ${muj.length > 1 ? 'llegan' : 'llega'} más a mujeres` + (hom.length ? `; ${y(hom)}, más a hombres.` : '.') : 'Las tres llegan más a hombres.'); })()]
   ];
   document.getElementById('finds').innerHTML = finds.map(([k, c, t]) => `<div class="find" style="--c:${c}"><small>${k}</small>${t}</div>`).join('');
 
