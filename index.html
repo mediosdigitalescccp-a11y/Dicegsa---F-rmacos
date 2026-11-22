@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dicegsa Fármacos · CCCP UM</title>
+<meta name="description" content="Resultados de las campañas de mantenimiento de Listerine, Lubriderm e Hipoglós Sport (Dicegsa) en Meta, Nicaragua, noviembre 2026.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+<style>
+:root {
+  --fg: #0e1b33; --muted: #5a6680; --line: #dbe3ef; --panel: #f4f7fc; --panel-2: #ffffff;
+  --bg-1: #07275f; --bg-2: #0d4fb8; --navy: #07275f; --blue: #1460d2; --sky: #2fa8ec;
+  --c-lis: #e2577f; --c-lub: #a77a3e; --c-hip: #d7262f;
+  --c-fb: #1877f2; --c-ig: #d62976; --c-wa: #25a35a; --c-th: #5b6477;
+  --ok: #17935a; --warn: #c27a00; --bad: #d13b3b; --radius: 14px; --gap: 14px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --fg: #e6edf9; --muted: #9fb0cb; --line: #2a3a58; --panel: #121c30; --panel-2: #172440; --bg-1: #041029; --bg-2: #0a2f6b; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --fg: #e6edf9; --muted: #9fb0cb; --line: #2a3a58; --panel: #121c30; --panel-2: #172440; --bg-1: #041029; --bg-2: #0a2f6b; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 14px; color: var(--fg); background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 60%, #2a87dc 100%) fixed; background-color: var(--bg-1); }
+.wrap { max-width: 1440px; margin: 0 auto; padding: 0 16px 32px; }
+h1, h2, h3, h4 { margin: 0; }
+.num { font-variant-numeric: tabular-nums; }
+button, select { font-family: inherit; }
+
+.nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg-1) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,.12); }
+.nav .wrap { display: flex; gap: 6px; align-items: center; padding-top: 8px; padding-bottom: 8px; overflow-x: auto; scrollbar-width: none; }
+.nav .wrap::-webkit-scrollbar { display: none; }
+.nav-brand { color: #fff; font-weight: 800; letter-spacing: .02em; margin-right: 10px; white-space: nowrap; font-size: 13px; }
+.nav a { color: rgba(255,255,255,.82); text-decoration: none; font-size: 12.5px; font-weight: 600; padding: 7px 11px; border-radius: 999px; white-space: nowrap; }
+.nav a:hover, .nav a:focus-visible { background: rgba(255,255,255,.14); color: #fff; outline: none; }
+.nav a.on { background: #fff; color: var(--navy); }
+
+.hero { margin-top: 16px; border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) auto; background: radial-gradient(120% 140% at 85% 10%, #3a9cf0 0%, #135fd0 40%, #072a6a 100%); color: #fff; box-shadow: 0 18px 40px rgba(3, 18, 52, .35); }
+.hero-txt { padding: 28px 32px; display: flex; flex-direction: column; gap: 12px; }
+.hero-logo { height: 32px; width: auto; align-self: flex-start; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.22); }
+.hero h1 { font-size: clamp(26px, 3.2vw, 40px); font-weight: 800; line-height: 1.08; }
+.hero h1 span { display: block; font-size: .46em; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .85; margin-bottom: 8px; }
+.lead { margin: 0; font-size: 15px; line-height: 1.55; max-width: 70ch; color: rgba(255,255,255,.92); }
+.lead b { color: #fff; }
+.hero-prods { display: grid; grid-template-columns: repeat(3, 160px); gap: 10px; padding: 22px 26px 22px 0; align-items: center; }
+.hero-prods div { border-radius: 14px; background: center / cover no-repeat; box-shadow: 0 10px 24px rgba(3, 18, 52, .35); border: 2px solid rgba(255,255,255,.35); aspect-ratio: 1 / 1; align-self: center; position: relative; overflow: hidden; }
+.hero-prods span { position: absolute; left: 6px; right: 6px; bottom: 6px; text-align: center; font-size: 10.5px; font-weight: 800; color: #fff; background: var(--c); border-radius: 999px; padding: 3px 6px; }
+
+.sec { display: flex; align-items: center; gap: 12px; margin: 34px 0 14px; color: #fff; scroll-margin-top: 64px; }
+.sec i { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(145deg, #4f8ff0, #2563d6); box-shadow: 0 6px 14px rgba(3, 18, 52, .25); }
+.sec i svg { width: 22px; height: 22px; color: #fff; }
+.sec h2 { font-size: 22px; font-weight: 800; flex: none; }
+.sec-line { flex: 1; height: 1.5px; min-width: 24px; background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(255,255,255,.15)); border-radius: 2px; }
+.sec p { margin: 0; font-size: 12.5px; opacity: .8; text-align: right; flex: none; max-width: 36%; }
+
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
+.card { background: var(--panel); border-radius: var(--radius); padding: 18px; box-shadow: 0 6px 18px rgba(3, 18, 52, .16); min-width: 0; position: relative; }
+.card h3 { font-size: 15px; font-weight: 800; }
+.sub { font-size: 12px; color: var(--muted); margin: 4px 0 12px; line-height: 1.45; }
+.s4 { grid-column: span 4; } .s5 { grid-column: span 5; } .s7 { grid-column: span 7; } .s12 { grid-column: span 12; }
+
+.tiles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--gap); margin-top: var(--gap); }
+.tile { background: var(--panel-2); border-radius: var(--radius); padding: 14px 16px; border-top: 4px solid var(--c, var(--blue)); box-shadow: 0 6px 18px rgba(3, 18, 52, .18); min-width: 0; }
+.tile small { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.tile b { display: block; font-size: 22px; font-weight: 800; margin-top: 4px; }
+.tile span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.brands { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+.brand { background: var(--panel); border-radius: var(--radius); padding: 18px; box-shadow: 0 6px 18px rgba(3, 18, 52, .16); border-top: 5px solid var(--c); display: flex; flex-direction: column; gap: 12px; }
+.brand-head { display: flex; align-items: center; gap: 12px; }
+.brand-head .ph { width: 56px; height: 56px; border-radius: 12px; background: center / cover no-repeat; flex: none; box-shadow: 0 4px 10px rgba(3, 18, 52, .2); }
+.brand-head h3 { color: var(--c); font-size: 18px; }
+.brand-head small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; word-break: break-all; }
+.big { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.big div { background: var(--panel-2); border-radius: 10px; padding: 10px 12px; }
+.big small { display: block; font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.big b { font-size: 17px; font-weight: 800; }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 5px 10px; font-size: 12.5px; border-top: 1px dashed var(--line); padding-top: 10px; }
+.kv span { color: var(--muted); }
+.kv b { text-align: right; }
+.share { display: grid; gap: 4px; }
+.share-l { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); }
+.share-bar { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--line); }
+.share-bar i { display: block; height: 100%; }
+
+.ctl { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.seg { display: inline-flex; background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; flex-wrap: wrap; }
+.seg button { font-size: 12px; font-weight: 600; letter-spacing: 0; text-transform: none; border: 0; background: transparent; color: var(--muted); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--blue); color: #fff; }
+.seg button:focus-visible { outline: 2px solid var(--sky); outline-offset: 1px; }
+.keys { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.keys span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: var(--c); margin-right: 6px; vertical-align: -1px; }
+.chart { position: relative; width: 100%; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: inherit; fill: var(--muted); font-size: 11px; }
+.tip { position: absolute; pointer-events: none; background: var(--panel-2); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font-size: 12px; box-shadow: 0 8px 24px rgba(3,18,52,.22); opacity: 0; transition: opacity .12s; z-index: 5; white-space: nowrap; font-family: inherit; }
+.tip b { display: block; margin-bottom: 3px; }
+
+.finds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.find { background: var(--panel-2); border-radius: 12px; padding: 14px; border-left: 4px solid var(--c); font-size: 13px; line-height: 1.5; }
+.find small { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; color: var(--c); margin-bottom: 4px; text-transform: uppercase; }
+
+.cards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.cre { background: var(--panel-2); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--line); min-width: 0; }
+.thumb { position: relative; aspect-ratio: 1 / 1; background: linear-gradient(145deg, var(--c), color-mix(in srgb, var(--c) 55%, #000)); }
+.thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.thumb .ph { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 12px; text-align: center; padding: 10px; }
+.rank { position: absolute; top: 8px; left: 8px; background: rgba(3,18,52,.68); color: #fff; font-size: 11px; font-weight: 800; border-radius: 999px; padding: 2px 9px; z-index: 2; }
+.cre-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.fmt { align-self: flex-start; font-size: 10.5px; font-weight: 800; letter-spacing: .05em; color: #fff; background: var(--c); padding: 3px 9px; border-radius: 999px; text-transform: uppercase; }
+.cre-name { font-weight: 800; font-size: 13px; }
+.stats { display: flex; flex-direction: column; flex: 1; justify-content: space-between; font-size: 12px; }
+.stats > div { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-top: 1px dashed var(--line); }
+.stats > div:first-child { border-top: 0; }
+.stats span { color: var(--muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+
+.aud { display: grid; grid-template-columns: .85fr 1fr 1.15fr; gap: 12px; }
+.aud > div { background: var(--panel-2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; }
+.aud h4 { font-size: 13px; margin-bottom: 8px; }
+.rows { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 4px; }
+.hb { display: grid; grid-template-columns: 92px 1fr 40px; gap: 8px; align-items: center; font-size: 12px; }
+.hb div { height: 12px; border-radius: 999px; background: color-mix(in srgb, var(--c) 14%, transparent); }
+.hb div i { display: block; height: 100%; border-radius: inherit; background: var(--c); transition: width .35s ease; }
+.hb b { text-align: right; }
+.gen { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 8px; }
+.gen svg { width: 84px; height: 84px; }
+.gen-l { width: 100%; display: grid; gap: 6px; }
+.gen-l div { display: grid; grid-template-columns: 10px 1fr auto; gap: 8px; align-items: center; font-size: 12px; }
+.gen-l i { width: 10px; height: 10px; border-radius: 3px; }
+.gen-l small { display: block; font-size: 10.5px; color: var(--muted); }
+
+.tbl-wrap { overflow-x: auto; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 760px; }
+.tbl th { text-align: right; font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding: 8px 6px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl td { text-align: right; padding: 7px 6px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl th:nth-child(-n+2), .tbl td:nth-child(-n+2) { text-align: left; }
+.tbl tr.partial td { color: var(--muted); font-style: italic; }
+.tbl tr.tot td { font-weight: 800; border-top: 2px solid var(--line); }
+.mk { display: inline-block; font-size: 11px; font-weight: 800; padding: 2px 9px; border-radius: 999px; color: #fff; background: var(--c); }
+details.notes { margin-top: 18px; color: rgba(255,255,255,.88); font-size: 12.5px; }
+details.notes summary { cursor: pointer; font-weight: 700; }
+details.notes ul { line-height: 1.6; padding-left: 18px; }
+
+.foot { margin-top: 30px; display: flex; justify-content: center; }
+.conf { background: #fff; border-radius: 18px; padding: 16px 24px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 26px rgba(3, 18, 52, .22); max-width: 760px; }
+.conf svg { flex: none; width: 22px; height: 22px; }
+.conf p { margin: 0; font-size: 14px; color: #55627a; line-height: 1.5; }
+.conf b { color: #0d1b3a; }
+
+@media (max-width: 1180px) {
+  .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .brands { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .s4, .s5, .s7 { grid-column: span 12; }
+  .hero-prods { grid-template-columns: repeat(3, 110px); }
+}
+@media (max-width: 760px) {
+  .wrap { padding: 0 12px 24px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-txt { padding: 22px 18px; }
+  .hero-prods { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0 18px 18px; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .finds, .aud { grid-template-columns: 1fr; }
+  .sec p { display: none; }
+  .sec h2 { font-size: 17px; flex: 0 1 auto; }
+  .sec i { width: 38px; height: 38px; border-radius: 12px; }
+  .stats > div { flex-direction: column; gap: 0; }
+  .big b { font-size: 14px; } .big div { padding: 8px 9px; } .big small { font-size: 9px; }
+  .brand-head small { word-break: normal; overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Secciones">
+  <div class="wrap">
+    <span class="nav-brand">DICEGSA · FÁRMACOS</span>
+    <a href="#resumen" data-t="resumen">Resumen</a>
+    <a href="#marcas" data-t="marcas">Por marca</a>
+    <a href="#entrega" data-t="entrega">Entrega diaria</a>
+    <a href="#ubicaciones" data-t="ubicaciones">Ubicaciones</a>
+    <a href="#creativos" data-t="creativos">Creativos</a>
+    <a href="#audiencia" data-t="audiencia">Audiencia</a>
+    <a href="#detalle" data-t="detalle">Detalle diario</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero" id="resumen">
+    <div class="hero-txt">
+      <img class="hero-logo" src="img/logo_cccp_um.png" alt="CCCP | UM">
+      <div class="tags"><span class="tag">Distribuido por Dicegsa</span><span class="tag">Meta · Facebook, Instagram y WhatsApp</span><span class="tag">Nicaragua · Noviembre 2026</span></div>
+      <h1><span>Campañas de mantenimiento · Alcance</span>Listerine, Lubriderm e Hipoglós Sport</h1>
+      <p class="lead" id="lead">—</p>
+    </div>
+    <div class="hero-prods" id="hero-prods"></div>
+  </header>
+
+  <section class="tiles" id="tiles" aria-label="Indicadores principales"></section>
+
+  <div class="sec" id="marcas"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.5" fill="currentColor"/></svg></i><h2>Resultados por marca</h2><span class="sec-line"></span><p>El alcance de cada marca es su alcance único; no se suma entre marcas</p></div>
+  <div class="brands" id="brands"></div>
+
+  <div class="sec" id="entrega"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></i><h2>Entrega diaria</h2><span class="sec-line"></span><p>Cada marca en su propia barra</p></div>
+  <div class="grid">
+    <section class="card s12">
+      <h3>Entrega diaria por marca</h3>
+      <div class="ctl" style="margin-top:10px">Ver <span class="seg" id="seg-met"><button type="button" data-v="impresiones" aria-pressed="true">Impresiones</button><button type="button" data-v="alcance" aria-pressed="false">Alcance</button><button type="button" data-v="costo" aria-pressed="false">Inversión</button><button type="button" data-v="clics" aria-pressed="false">Clics</button></span></div>
+      <div class="keys" id="keys-marcas"></div>
+      <div class="chart" id="c-diario"></div>
+      <p class="sub" id="diario-nota" style="margin:8px 0 0"></p>
+    </section>
+    <section class="card s12"><h3>Hallazgos clave</h3><div class="finds" id="finds" style="margin-top:12px"></div></section>
+  </div>
+
+  <div class="sec" id="ubicaciones"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></i><h2>Ubicaciones</h2><span class="sec-line"></span><p>Dónde se vieron los anuncios, por impresiones</p></div>
+  <div class="grid">
+    <section class="card s12"><h3>Reparto por plataforma</h3><p class="sub">Participación de Facebook, Instagram, WhatsApp y Threads en las impresiones de cada marca y creativo.</p><div class="keys" id="keys-plat"></div><div id="plat"></div></section>
+  </div>
+
+  <div class="sec" id="creativos"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="10" r="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m21 16-5-5L5 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></i><h2>Creativos</h2><span class="sec-line"></span><p>Piezas estáticas (Page Post Link) por marca</p></div>
+  <section class="card"><p class="sub" style="margin-top:0">% interacción = interacciones ÷ impresiones.</p><div class="cards" id="cards"></div></section>
+
+  <div class="sec" id="audiencia"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 20a6.5 6.5 0 0 0-2.5-5.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></i><h2>Audiencia</h2><span class="sec-line"></span><p>Alcance por segmento de cada marca</p></div>
+  <section class="card">
+    <div class="ctl">Marca <span class="seg" id="seg-aud"></span></div>
+    <div class="aud" id="aud"></div>
+    <p class="sub" style="margin:10px 0 0">Región: los 6 departamentos con más alcance.</p>
+  </section>
+
+  <div class="sec" id="detalle"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 9.5h18M3 15h18M9 4v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></i><h2>Detalle diario</h2><span class="sec-line"></span></div>
+  <section class="card">
+    <div class="ctl">Marca <span class="seg" id="seg-det"></span></div>
+    <div class="tbl-wrap"><table class="tbl" id="tbl"></table></div>
+  </section>
+
+  <details class="notes">
+    <summary>Notas sobre las cifras</summary>
+    <ul>
+      <li>Fuente: Meta Ads, campañas de alcance FARMACO_LISTERINE_RCH_MANT_NOV_2026, FARMACO_LUBRIDERM_RCH_MANT_NOV_2026 y FARMACO_HIPOGLOS_SPORT_RCH_MANT_NOV_2026.</li>
+      <li>El alcance de cada marca es el alcance único que reporta Meta para la campaña; no es la suma de los días ni se suma entre marcas.</li>
+      <li>Inversión = Total Cost de cada día. Clics = clics que reporta Meta. CTR = clics ÷ impresiones.</li>
+      <li>El último día de datos está en curso y aparece en cursiva en el detalle diario.</li>
+      <li>Montos en USD.</li>
+    </ul>
+  </details>
+  <footer class="foot"><div class="conf"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" fill="none" stroke="#e8622c" stroke-width="2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" fill="none" stroke="#e8622c" stroke-width="2"/><circle cx="12" cy="15.5" r="1.4" fill="#e8622c"/></svg><p><b>Información confidencial.</b> Propiedad de CCCP UM Nicaragua. Uso interno; no distribuir sin autorización.</p></div></footer>
+</main>
+
+<script src="datos.js"></script>
+<script>
+(() => {
+  const D = window.DG_DATA, M = D.marcas;
+  const COL = { 'Listerine': 'var(--c-lis)', 'Lubriderm': 'var(--c-lub)', 'Hipoglós Sport': 'var(--c-hip)' };
+  const SLUG = { 'Listerine': 'LISTERINE', 'Lubriderm': 'LUBRIDERM', 'Hipoglós Sport': 'HIPOGLOS' };
+  const PCOL = { Facebook: 'var(--c-fb)', Instagram: 'var(--c-ig)', WhatsApp: 'var(--c-wa)', Threads: 'var(--c-th)' };
+  const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  const nf = (d) => new Intl.NumberFormat('en-US', { maximumFractionDigits: d, minimumFractionDigits: d });
+  const F = { int: (v) => nf(0).format(v), d2: (v) => nf(2).format(v), usd: (v) => '$' + nf(2).format(v), pct: (v) => nf(0).format(v * 100) + '%', pct1: (v) => nf(1).format(v * 100) + '%', pct2: (v) => nf(2).format(v * 100) + '%',
+    M: (v) => v >= 1e6 ? nf(2).format(v / 1e6) + ' M' : v >= 1e3 ? nf(1).format(v / 1e3) + ' mil' : nf(0).format(v), fecha: (s) => { const [, m, d] = s.split('-').map(Number); return d + ' ' + MES[m - 1]; } };
+  const sum = (a, k) => a.reduce((s, r) => s + (+r[k] || 0), 0);
+  const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h !== undefined) e.innerHTML = h; return e; };
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const hoy = new Date(Date.now() - 6 * 3600e3).toISOString().slice(0, 10), ult = D.actualizado, enCurso = ult >= hoy;
+  const tipFor = (box) => { let t = box.querySelector(':scope > .tip'); if (!t) { t = el('div', 'tip'); box.append(t); } return {
+    show(ev, lines) { t.innerHTML = '<b>' + esc(lines[0]) + '</b>' + lines.slice(1).map((l) => '<div>' + esc(l) + '</div>').join(''); const r = box.getBoundingClientRect(); let x = ev.clientX - r.left + 12; t.style.opacity = 1; const w = t.offsetWidth; if (x + w > r.width) x = Math.max(0, ev.clientX - r.left - w - 12); t.style.left = x + 'px'; t.style.top = (ev.clientY - r.top + 12) + 'px'; },
+    hide() { t.style.opacity = 0; } }; };
+  const segs = (id, fn) => { const s = document.getElementById(id); s.addEventListener('click', (ev) => { const b = ev.target.closest('button'); if (!b) return; s.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); fn(b.dataset.v); }); };
+
+  // Totales por marca
+  M.forEach((m) => { const d = m.diario; m.T = { imp: sum(d, 'impresiones'), costo: sum(d, 'costo'), clics: sum(d, 'clics'), inter: sum(d, 'interacciones'), dias: d.length, desde: d[0].fecha };
+    m.T.cpm = m.T.costo / m.T.imp * 1000; m.T.ctr = m.T.clics / m.T.imp; m.T.cpc = m.T.clics ? m.T.costo / m.T.clics : null; });
+  const imp = M.reduce((s, m) => s + m.T.imp, 0), inv = M.reduce((s, m) => s + m.T.costo, 0), clics = M.reduce((s, m) => s + m.T.clics, 0), inter = M.reduce((s, m) => s + m.T.inter, 0);
+  const desde = M.map((m) => m.T.desde).sort()[0];
+
+  document.getElementById('lead').innerHTML = `Del ${F.fecha(desde)} al ${F.fecha(ult)}${enCurso ? ' (en curso)' : ''}, las tres campañas de mantenimiento suman <b>${F.int(imp)}</b> impresiones y <b>${F.int(clics)}</b> clics con una inversión de <b>${F.usd(inv)}</b>. Listerine llegó a <b>${F.int(M[0].alcance)}</b> personas, Lubriderm a <b>${F.int(M[1].alcance)}</b> e Hipoglós Sport, que inició el ${F.fecha(M[2].T.desde)}, a <b>${F.int(M[2].alcance)}</b>.`;
+  document.getElementById('hero-prods').innerHTML = M.map((m) => `<div style="--c:${COL[m.marca]};background-image:url('img/${SLUG[m.marca]}_PPL_MANT_V1.jpg')" role="img" aria-label="Creativo de ${m.marca}"><span>${m.marca}</span></div>`).join('');
+
+  const tiles = [['Inversión total', F.usd(inv), 'tres marcas', 'var(--blue)'], ['Impresiones', F.int(imp), 'CPM ' + F.usd(inv / imp * 1000), 'var(--sky)'],
+    ['Clics', F.int(clics), 'CTR ' + F.pct2(clics / imp), 'var(--navy)'], ...M.map((m) => ['Alcance ' + m.marca, F.int(m.alcance), 'frecuencia ' + F.d2(m.frecuencia), COL[m.marca]])];
+  document.getElementById('tiles').innerHTML = tiles.map(([a, b, c, col]) => `<div class="tile" style="--c:${col}"><small>${a}</small><b class="num">${b}</b><span>${c}</span></div>`).join('');
+
+  // Por marca
+  const platOf = (rows) => { const t = {}; rows.forEach((r) => { t[r.plataforma] = (t[r.plataforma] || 0) + r.impresiones; }); const s = Object.values(t).reduce((a, b) => a + b, 0) || 1; return Object.entries(t).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ k, v, p: v / s })); };
+  const PORD = ['Facebook', 'Instagram', 'WhatsApp', 'Threads'], ordered = (p) => [...p].sort((a, b) => PORD.indexOf(a.k) - PORD.indexOf(b.k));
+  const shareBar = (rows) => { const p = ordered(platOf(rows)); return `<div class="share"><div class="share-bar" role="img" aria-label="${p.map((x) => x.k + ' ' + F.pct(x.p)).join(', ')}">${p.map((x) => `<i style="width:${x.p * 100}%;background:${PCOL[x.k]}"></i>`).join('')}</div><div class="share-l">${p.filter((x) => x.p >= .03).map((x) => `<span>${x.k} ${F.pct(x.p)}</span>`).join('')}</div></div>`; };
+  document.getElementById('brands').innerHTML = M.map((m) => `<section class="brand" style="--c:${COL[m.marca]}">
+      <div class="brand-head"><span class="ph" style="background-image:url('img/${SLUG[m.marca]}_PPL_MANT_V1.jpg')" role="img" aria-label="${m.marca}"></span><div><h3>${m.marca}</h3><small>${m.campana}</small></div></div>
+      <div class="big"><div><small>Alcance</small><b class="num">${F.M(m.alcance)}</b></div><div><small>Impresiones</small><b class="num">${F.M(m.T.imp)}</b></div><div><small>Inversión</small><b class="num">${F.usd(m.T.costo)}</b></div></div>
+      <div class="kv"><span>Frecuencia</span><b class="num">${F.d2(m.frecuencia)}</b><span>CPM</span><b class="num">${F.usd(m.T.cpm)}</b><span>Clics · CTR</span><b class="num">${F.int(m.T.clics)} · ${F.pct2(m.T.ctr)}</b><span>Costo por clic</span><b class="num">${m.T.cpc == null ? '—' : '$' + nf(3).format(m.T.cpc)}</b><span>Interacciones</span><b class="num">${F.int(m.T.inter)}</b><span>Días al aire</span><b class="num">${m.T.dias}${enCurso ? ' (último en curso)' : ''}</b></div>
+      <div><small style="font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Impresiones por plataforma</small>${shareBar(m.creativos)}</div>
+    </section>`).join('');
+
+  // Entrega diaria
+  const fechas = [...new Set(M.flatMap((m) => m.diario.map((d) => d.fecha)))].sort();
+  document.getElementById('keys-marcas').innerHTML = M.map((m) => `<span style="--c:${COL[m.marca]}">${m.marca}</span>`).join('');
+  let met = 'impresiones';
+  const drawDiario = () => { const box = document.getElementById('c-diario'), W = Math.max(box.clientWidth, 300), H = 260, mg = { t: 24, r: 8, b: 26, l: 54 };
+    const val = (m, f) => { const r = m.diario.find((d) => d.fecha === f); return r ? r[met] : 0; };
+    const max = Math.max(...fechas.flatMap((f) => M.map((m) => val(m, f)))) * 1.15 || 1, gw = (W - mg.l - mg.r) / fechas.length, bw = Math.min(50, gw * 0.8 / M.length), y = (v) => H - mg.b - v / max * (H - mg.t - mg.b);
+    const fmt = met === 'costo' ? (v) => '$' + nf(v < 10 ? 2 : 0).format(v) : F.M;
+    let g = ''; for (let k = 0; k <= 4; k++) { const v = max / 1.15 * k / 4; g += `<line x1="${mg.l}" x2="${W - mg.r}" y1="${y(v)}" y2="${y(v)}" style="stroke:var(--line)"></line><text x="${mg.l - 8}" y="${y(v) + 4}" text-anchor="end">${fmt(v)}</text>`; }
+    fechas.forEach((f, i) => { const x0 = mg.l + i * gw + (gw - bw * M.length) / 2, op = f === ult && enCurso ? .45 : 1;
+      M.forEach((m, j) => { const v = val(m, f); if (!v) return; const x = x0 + j * bw; g += `<rect x="${x + 1}" y="${y(v)}" width="${bw - 2}" height="${y(0) - y(v)}" rx="3" style="fill:${COL[m.marca]};opacity:${op}"></rect>`; if (bw >= 40) g += `<text x="${x + bw / 2}" y="${y(v) - 5}" text-anchor="middle" style="fill:var(--fg);font-weight:700;font-size:9.5px">${fmt(v)}</text>`; });
+      g += `<text x="${mg.l + i * gw + gw / 2}" y="${H - 8}" text-anchor="middle">${F.fecha(f)}</text><rect data-i="${i}" x="${mg.l + i * gw}" y="${mg.t}" width="${gw}" height="${H - mg.t - mg.b}" style="fill:transparent"></rect>`; });
+    box.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${met} por día y marca">${g}</svg>`;
+    const tp = tipFor(box);
+    box.querySelectorAll('rect[data-i]').forEach((rc) => { const f = fechas[+rc.dataset.i]; const on = (ev) => tp.show(ev, [F.fecha(f) + (f === ult && enCurso ? ' (en curso)' : ''), ...M.map((m) => m.marca + ': ' + (met === 'costo' ? F.usd(val(m, f)) : F.int(val(m, f))))]); rc.addEventListener('pointermove', on); rc.addEventListener('pointerdown', on); rc.addEventListener('pointerleave', () => tp.hide()); });
+    document.getElementById('diario-nota').textContent = (met === 'alcance' ? 'Alcance diario de cada marca; las personas pueden repetirse entre días y entre marcas, por eso no se suma. ' : '') + `Hipoglós Sport inició el ${F.fecha(M[2].T.desde)}.` + (enCurso ? ` El ${F.fecha(ult)} está en curso (barras más claras).` : ''); };
+  segs('seg-met', (v) => { met = v; drawDiario(); });
+
+  // Hallazgos
+  const byCTR = [...M].sort((a, b) => b.T.ctr - a.T.ctr), byCPM = [...M].sort((a, b) => a.T.cpm - b.T.cpm);
+  const lis = M[0], lub = M[1], hip = M[2];
+  const top = (m) => { const t = {}; m.creativos.forEach((r) => { t[r.anuncio] = (t[r.anuncio] || 0) + r.impresiones; }); const e = Object.entries(t).sort((a, b) => b[1] - a[1]); const s = e.reduce((a, [, v]) => a + v, 0); return [e[0][0], e[0][1] / s]; };
+  const wa = (m) => { const p = platOf(m.creativos).find((x) => x.k === 'WhatsApp'); return p ? p.p : 0; };
+  const finds = [
+    ['Clics', COL[byCTR[0].marca], `<b>${byCTR[0].marca}</b> tiene el mejor CTR: <b>${F.pct2(byCTR[0].T.ctr)}</b> (${F.int(byCTR[0].T.clics)} clics), contra ${F.pct2(byCTR[1].T.ctr)} de ${byCTR[1].marca}.`],
+    ['Costo', COL[byCPM[0].marca], `Las tres campañas compran alcance a bajo costo: CPM de <b>${F.usd(lis.T.cpm)}</b> en Listerine, <b>${F.usd(lub.T.cpm)}</b> en Lubriderm y <b>${F.usd(hip.T.cpm)}</b> en Hipoglós Sport.`],
+    ['Frecuencia', 'var(--blue)', `La frecuencia se mantiene baja (Listerine <b>${F.d2(lis.frecuencia)}</b>, Lubriderm <b>${F.d2(lub.frecuencia)}</b>): las campañas priorizan llegar a más personas antes que repetir el mensaje.`],
+    ['Creativos', COL['Listerine'], `En Listerine, <b>${top(lis)[0].replace(/_/g, ' ')}</b> concentra el <b>${F.pct(top(lis)[1])}</b> de las impresiones; en Lubriderm, <b>${top(lub)[0].replace(/_/g, ' ')}</b> lleva el <b>${F.pct(top(lub)[1])}</b>.`],
+    ['WhatsApp', 'var(--c-wa)', `WhatsApp aporta el <b>${F.pct(wa(hip))}</b> de las impresiones de Hipoglós Sport, frente al ${F.pct(wa(lis))} en Listerine y ${F.pct(wa(lub))} en Lubriderm.`],
+    ['Audiencia', COL['Lubriderm'], `El público de <b>18-24</b> es el de mayor alcance en las tres marcas. Lubriderm y Hipoglós Sport llegan más a mujeres; Listerine, más a hombres.`]
+  ];
+  document.getElementById('finds').innerHTML = finds.map(([k, c, t]) => `<div class="find" style="--c:${c}"><small>${k}</small>${t}</div>`).join('');
+
+  // Ubicaciones
+  const PLATS = ['Facebook', 'Instagram', 'WhatsApp', 'Threads'];
+  document.getElementById('keys-plat').innerHTML = PLATS.map((p) => `<span style="--c:${PCOL[p]}">${p}</span>`).join('');
+  const platRow = (label, rows, col) => { const p = ordered(platOf(rows)), tot = sum(rows, 'impresiones');
+    return `<div class="prow" data-l="${esc(label)}" data-t="${tot}" data-p='${JSON.stringify(p.map((x) => [x.k, x.v, x.p]))}' style="display:grid;grid-template-columns:200px 1fr 90px;gap:10px;align-items:center;font-size:12.5px;margin:7px 0;cursor:default">
+      <span style="font-weight:700"><span class="mk" style="--c:${col};margin-right:6px">${label.split(' · ')[0]}</span>${label.split(' · ')[1] || 'Total'}</span>
+      <div class="share-bar" style="height:16px">${p.map((x) => `<i style="width:${x.p * 100}%;background:${PCOL[x.k]}"></i>`).join('')}</div><b class="num" style="text-align:right">${F.M(tot)}</b></div>`; };
+  const pbox = document.getElementById('plat'); pbox.style.position = 'relative';
+  pbox.innerHTML = M.map((m) => platRow(m.marca, m.creativos, COL[m.marca]) + [...new Set(m.creativos.map((r) => r.anuncio))].sort().map((a) => platRow(m.marca + ' · ' + a.replace(/_/g, ' '), m.creativos.filter((r) => r.anuncio === a), COL[m.marca])).join('')).join('<div style="height:6px"></div>');
+  const tpp = tipFor(pbox);
+  pbox.querySelectorAll('.prow').forEach((r) => { const p = JSON.parse(r.dataset.p); const on = (ev) => tpp.show(ev, [r.dataset.l, ...p.map(([k, v, s]) => `${k}: ${F.pct1(s)} · ${F.int(v)} impresiones`), 'Total: ' + F.int(+r.dataset.t) + ' impresiones']); r.addEventListener('pointermove', on); r.addEventListener('pointerdown', on); r.addEventListener('pointerleave', () => tpp.hide()); });
+
+  // Creativos
+  const cres = M.flatMap((m) => [...new Set(m.creativos.map((r) => r.anuncio))].sort().reverse().map((a) => { const rows = m.creativos.filter((r) => r.anuncio === a); return { marca: m.marca, anuncio: a, imp: sum(rows, 'impresiones'), inter: sum(rows, 'interacciones'), dias: new Set(rows.map((r) => r.fecha)).size, rows }; }));
+  const IMG = { LISTERINE_PPL_MANT_V1: 1, LISTERINE_PPL_MANT_V2: 1, LUBRIDERM_PPL_MANT_V1: 1, LUBRIDERM_PPL_MANT_V2: 1, HIPOGLOS_PPL_MANT_V1: 1, HIPOGLOS_PPL_MANT_V2: 1 };
+  document.getElementById('cards').innerHTML = cres.map((c, i) => { const key = SLUG[c.marca] + '_' + c.anuncio, top = platOf(c.rows)[0];
+    return `<article class="cre" style="--c:${COL[c.marca]}"><div class="thumb">${IMG[key] ? `<img src="img/${key}.jpg" alt="${c.marca} ${c.anuncio}" loading="lazy">` : `<div class="ph">${c.marca}<br>${c.anuncio.replace(/_/g, ' ')}</div>`}<span class="rank">${c.marca}</span></div>
+      <div class="cre-body"><span class="fmt">Page Post Link</span><div class="cre-name">${c.anuncio.replace(/_/g, ' ')}</div>
+      <div class="stats"><div><span>Impresiones</span><b class="num">${F.M(c.imp)}</b></div><div><span>Interacciones</span><b class="num">${F.int(c.inter)}</b></div><div><span>% interacción</span><b class="num">${F.pct2(c.inter / c.imp)}</b></div><div><span>Plataforma principal</span><b>${top.k} ${F.pct(top.p)}</b></div></div></div></article>`; }).join('');
+
+  // Audiencia
+  let audM = M[0].marca;
+  document.getElementById('seg-aud').innerHTML = M.map((m, i) => `<button type="button" data-v="${m.marca}" aria-pressed="${i === 0}">${m.marca}</button>`).join('');
+  const drawAud = () => { const m = M.find((x) => x.marca === audM), col = COL[m.marca], A = (d) => m.audiencia.filter((r) => r.dimension === d && r.segmento !== 'Desconocido');
+    const g = A('Género'), gt = sum(g, 'valor'), GC = { Mujer: col, Hombre: 'var(--navy)' };
+    const S = 100, R1 = 46, R0 = 30; let a0 = -Math.PI / 2, paths = '';
+    g.forEach((r) => { const a1 = a0 + r.valor / gt * Math.PI * 2, L = a1 - a0 > Math.PI ? 1 : 0, P = (a, rr) => (S / 2 + rr * Math.cos(a)) + ',' + (S / 2 + rr * Math.sin(a)); paths += `<path d="M${P(a0, R1)} A${R1},${R1} 0 ${L} 1 ${P(a1, R1)} L${P(a1, R0)} A${R0},${R0} 0 ${L} 0 ${P(a0, R0)} Z" style="fill:${GC[r.segmento]}"></path>`; a0 = a1; });
+    const blk = (t, rows) => { const tt = sum(rows, 'valor'), mx = Math.max(...rows.map((r) => r.valor)); return `<div><h4>${t}</h4><div class="rows">${rows.map((r) => `<div class="hb" style="--c:${col}"><span>${r.segmento}</span><div><i style="width:${r.valor / mx * 100}%"></i></div><b class="num">${F.pct(r.valor / tt)}</b></div>`).join('')}</div></div>`; };
+    const reg = A('Región').sort((a, b) => b.valor - a.valor), regT = sum(reg, 'valor');
+    document.getElementById('aud').innerHTML = `<div><h4>Género</h4><div class="gen"><svg viewBox="0 0 ${S} ${S}" role="img" aria-label="${g.map((r) => r.segmento + ' ' + F.pct(r.valor / gt)).join(', ')}">${paths}</svg><div class="gen-l">${g.map((r) => `<div><i style="background:${GC[r.segmento]}"></i><span>${r.segmento}<small>${F.int(r.valor)} personas</small></span><b class="num">${F.pct(r.valor / gt)}</b></div>`).join('')}</div></div></div>`
+      + blk('Edad', A('Edad')) + (() => { const top6 = reg.slice(0, 6), mx = top6[0].valor; return `<div><h4>Región</h4><div class="rows">${top6.map((r) => `<div class="hb" style="--c:${col}"><span>${r.segmento}</span><div><i style="width:${r.valor / mx * 100}%"></i></div><b class="num">${F.pct(r.valor / regT)}</b></div>`).join('')}</div></div>`; })(); };
+  segs('seg-aud', (v) => { audM = v; drawAud(); });
+
+  // Detalle
+  let detM = 'todas';
+  document.getElementById('seg-det').innerHTML = `<button type="button" data-v="todas" aria-pressed="true">Todas</button>` + M.map((m) => `<button type="button" data-v="${m.marca}" aria-pressed="false">${m.marca}</button>`).join('');
+  const drawTabla = () => { const ms = M.filter((m) => detM === 'todas' || m.marca === detM);
+    const rows = ms.flatMap((m) => m.diario.map((d) => ({ ...d, marca: m.marca }))).sort((a, b) => b.fecha.localeCompare(a.fecha) || M.findIndex((m) => m.marca === a.marca) - M.findIndex((m) => m.marca === b.marca));
+    const tr = (r, tot) => `<tr class="${tot ? 'tot' : r.fecha === ult && enCurso ? 'partial' : ''}"><td>${tot ? 'Total' : F.fecha(r.fecha)}</td><td><span class="mk" style="--c:${COL[r.marca]}">${r.marca}</span></td><td class="num">${F.int(r.alcance)}</td><td class="num">${F.int(r.impresiones)}</td><td class="num">${F.int(r.clics)}</td><td class="num">${F.pct2(r.clics / r.impresiones)}</td><td class="num">${F.int(r.interacciones)}</td><td class="num">${F.usd(r.costo)}</td><td class="num">${F.usd(r.costo / r.impresiones * 1000)}</td></tr>`;
+    document.getElementById('tbl').innerHTML = '<thead><tr><th>Fecha</th><th>Marca</th><th>Alcance</th><th>Impresiones</th><th>Clics</th><th>CTR</th><th>Interacciones</th><th>Inversión</th><th>CPM</th></tr></thead><tbody>'
+      + rows.map((r) => tr(r)).join('') + ms.map((m) => tr({ marca: m.marca, alcance: m.alcance, impresiones: m.T.imp, clics: m.T.clics, interacciones: m.T.inter, costo: m.T.costo }, true)).join('') + '</tbody>'; };
+  segs('seg-det', (v) => { detM = v; drawTabla(); });
+
+  // Navegación
+  const links = [...document.querySelectorAll('.nav a')];
+  const spy = () => { let cur = links[0].dataset.t; links.forEach((a) => { const t = document.getElementById(a.dataset.t); if (t && t.getBoundingClientRect().top <= 120) cur = a.dataset.t; }); links.forEach((a) => a.classList.toggle('on', a.dataset.t === cur)); };
+  addEventListener('scroll', () => requestAnimationFrame(spy), { passive: true });
+  const layout = () => { drawDiario(); spy(); };
+  drawAud(); drawTabla(); layout();
+  let w = innerWidth, t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { if (innerWidth !== w) { w = innerWidth; layout(); } }, 150); });
+})();
+</script>
+</body>
+</html>
