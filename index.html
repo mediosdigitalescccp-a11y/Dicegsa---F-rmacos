@@ -125,6 +125,8 @@ button, select { font-family: inherit; }
 .stats { display: flex; flex-direction: column; flex: 1; justify-content: space-between; font-size: 12px; }
 .stats > div { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-top: 1px dashed var(--line); }
 .stats > div:first-child { border-top: 0; }
+.stats > div.pp { flex-direction: column; justify-content: flex-start; gap: 2px; }
+.stats > div.pp b { text-align: left; white-space: nowrap; }
 .stats span { color: var(--muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
 
 .aud { display: grid; grid-template-columns: .85fr 1fr 1.15fr; gap: 12px; }
@@ -414,7 +416,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
       <div class="grid" style="margin-top:var(--gap)">
         <section class="card s5 bcard"><h3>Creativos</h3><p class="sub">Ordenados de mayor a menor impresiones. % interacción = interacciones ÷ impresiones.</p><div class="cards2">${cres.map((c) => { const key = SLUG[m.marca] + '_' + c.a, tp = platOf(c.rows)[0];
           return `<article class="cre"><div class="thumb">${IMG[key] ? `<img src="img/${key}.jpg" alt="${m.marca} ${c.a}" loading="lazy">` : ''}</div><div class="cre-body"><span class="fmt">Page Post Link</span><div class="cre-name">${c.a.replace(/_/g, ' ')}</div>
-          <div class="stats"><div><span>Impresiones</span><b class="num">${F.M(c.imp)}</b></div><div><span>Interacciones</span><b class="num">${F.int(c.inter)}</b></div><div><span>% interacción</span><b class="num">${F.pct2(c.inter / c.imp)}</b></div><div><span>Plataforma principal</span><b>${tp.k} ${F.pct(tp.p)}</b></div></div></div></article>`; }).join('')}</div></section>
+          <div class="stats"><div><span>Impresiones</span><b class="num">${F.M(c.imp)}</b></div><div><span>Interacciones</span><b class="num">${F.int(c.inter)}</b></div><div><span>% interacción</span><b class="num">${F.pct2(c.inter / c.imp)}</b></div><div class="pp"><span>Plataforma principal</span><b>${tp.k} ${F.pct(tp.p)}</b></div></div></div></article>`; }).join('')}</div></section>
         <section class="card s7 bcard"><h3>Audiencia</h3><p class="sub">Alcance por segmento.</p><div class="aud">${audHTML(m)}</div>
           <h3 style="margin-top:18px">Impresiones por plataforma</h3><div class="keys" style="margin-top:8px">${PLATS.map((p) => `<span style="--c:${PCOL[p]}">${p}</span>`).join('')}</div>
           <div class="bplat">${platRow(m.marca + ' · Total', 'Total', m.creativos, col)}${cres.map((c) => platRow(m.marca + ' · ' + c.a.replace(/_/g, ' '), c.a.replace(/_/g, ' '), c.rows, col)).join('')}</div></section>
