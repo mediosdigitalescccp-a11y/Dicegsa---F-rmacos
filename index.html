@@ -287,7 +287,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
     <summary>Notas sobre las cifras</summary>
     <ul>
       <li>Fuente: Meta Ads, campañas de alcance de mantenimiento de cada marca.</li>
-      <li>El alcance de cada marca es el alcance único que reporta Meta para la campaña; no es la suma de los días ni se suma entre marcas.</li>
+      <li>Alcance, frecuencia y CPM de cada marca = columnas Reach Nuevo, Frec Nuevo y CPM Nuevo de la hoja; no son la suma de los días ni se suman entre marcas.</li>
       <li>Inversión = Total Cost de cada día. Interacciones = interacciones con la publicación que reporta Meta. % interacción = interacciones ÷ impresiones.</li>
       <li>El último día de datos está en curso y aparece en cursiva en el detalle diario.</li>
       <li>Montos en USD.</li>
@@ -296,7 +296,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   <footer class="foot"><div class="conf"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" fill="none" stroke="#e8622c" stroke-width="2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" fill="none" stroke="#e8622c" stroke-width="2"/><circle cx="12" cy="15.5" r="1.4" fill="#e8622c"/></svg><p><b>Información confidencial.</b> Propiedad de CCCP UM Nicaragua. Uso interno; no distribuir sin autorización.</p></div></footer>
 </main>
 
-<script src="datos.js?v=202611221755"></script>
+<script src="datos.js?v=202611221801"></script>
 <script>
 (() => {
   const D = window.DG_DATA, M = D.marcas;
@@ -321,7 +321,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   const ID = { 'Listerine': 'listerine', 'Lubriderm': 'lubriderm', 'Hipoglós Sport': 'hipoglos' };
   const C2 = { 'Listerine': 'var(--c-lis-2)', 'Lubriderm': 'var(--c-lub-2)', 'Hipoglós Sport': 'var(--c-hip-2)' };
   M.forEach((m) => { const d = m.diario; m.T = { imp: sum(d, 'impresiones'), costo: sum(d, 'costo'), inter: sum(d, 'interacciones'), dias: d.length, desde: d[0].fecha };
-    m.T.cpm = m.T.costo / m.T.imp * 1000; m.T.tasa = m.T.inter / m.T.imp; m.T.cpi = m.T.inter ? m.T.costo / m.T.inter : null; });
+    m.T.cpm = m.cpm; m.T.tasa = m.T.inter / m.T.imp; m.T.cpi = m.T.inter ? m.T.costo / m.T.inter : null; });
   const imp = M.reduce((s, m) => s + m.T.imp, 0), inv = M.reduce((s, m) => s + m.T.costo, 0), inter = M.reduce((s, m) => s + m.T.inter, 0);
   const desde = M.map((m) => m.T.desde).sort()[0];
 
@@ -398,7 +398,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
     const ed = A('Edad'), reg = A('Región').sort((a, b) => b.valor - a.valor);
     return `<div><h4>Género</h4><div class="gen"><svg viewBox="0 0 ${S} ${S}" role="img" aria-label="${g.map((r) => r.segmento + ' ' + F.pct(r.valor / gt)).join(', ')}">${paths}</svg><div class="gen-l">${g.map((r) => `<div><i style="background:${GC[r.segmento]}"></i><span>${r.segmento}<small>${F.int(r.valor)} personas</small></span><b class="num">${F.pct(r.valor / gt)}</b></div>`).join('')}</div></div></div>`
       + `<div><h4>Edad</h4>${bars(ed, sum(ed, 'valor'))}</div><div><h4>Región · top 6</h4>${bars(reg.slice(0, 6), sum(reg, 'valor'))}</div>`; };
-  const tabla = (m) => { const tr = (r, tot) => `<tr class="${tot ? 'tot' : r.fecha === ult && enCurso ? 'partial' : ''}"><td>${tot ? 'Total' : F.fecha(r.fecha)}</td><td class="num">${F.int(r.alcance)}</td><td class="num">${F.int(r.impresiones)}</td><td class="num">${F.int(r.interacciones)}</td><td class="num">${F.pct2(r.interacciones / r.impresiones)}</td><td class="num">${F.usd(r.costo)}</td><td class="num">${F.usd(r.costo / r.impresiones * 1000)}</td></tr>`;
+  const tabla = (m) => { const tr = (r, tot) => `<tr class="${tot ? 'tot' : r.fecha === ult && enCurso ? 'partial' : ''}"><td>${tot ? 'Total' : F.fecha(r.fecha)}</td><td class="num">${F.int(r.alcance)}</td><td class="num">${F.int(r.impresiones)}</td><td class="num">${F.int(r.interacciones)}</td><td class="num">${F.pct2(r.interacciones / r.impresiones)}</td><td class="num">${F.usd(r.costo)}</td><td class="num">${F.usd(tot ? m.cpm : r.costo / r.impresiones * 1000)}</td></tr>`;
     return '<thead><tr><th>Fecha</th><th>Alcance</th><th>Impresiones</th><th>Interacciones</th><th>% interacción</th><th>Inversión</th><th>CPM</th></tr></thead><tbody>'
       + [...m.diario].reverse().map((r) => tr(r)).join('') + tr({ alcance: m.alcance, impresiones: m.T.imp, interacciones: m.T.inter, costo: m.T.costo }, true) + '</tbody>'; };
   const IMG = { LISTERINE_PPL_MANT_V1: 1, LISTERINE_PPL_MANT_V2: 1, LUBRIDERM_PPL_MANT_V1: 1, LUBRIDERM_PPL_MANT_V2: 1, HIPOGLOS_PPL_MANT_V1: 1, HIPOGLOS_PPL_MANT_V2: 1 };

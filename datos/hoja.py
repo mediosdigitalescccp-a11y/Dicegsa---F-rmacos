@@ -1,10 +1,10 @@
 # Bloques de la hoja "Data campañas fármacos 2026" — corte 2026-11-22.
-# Alcance de campaña = suma del desglose por género de Meta (las celdas "Reach Nuevo" de la hoja no están actualizadas).
+# Alcance, frecuencia y CPM de campaña = columnas "Reach Nuevo", "Frec Nuevo" y "CPM Nuevo" de cada hoja.
 # Global por día: fecha alcance impresiones interacciones costo clics
 # Creativos por día: fecha|anuncio plataforma alcance impresiones interacciones;...
 MARCAS = {
  'Listerine': dict(
-  campana='FARMACO_LISTERINE_RCH_MANT_NOV_2026', alcance=123268, frecuencia=1.47, cpm=0.16,
+  campana='FARMACO_LISTERINE_RCH_MANT_NOV_2026', alcance=103783, frecuencia=1.39, cpm=0.16,
   diario="""2026-11-17 29259 30474 20 4.01 29
 2026-11-18 38941 40484 18 6.58 31
 2026-11-19 35418 37109 19 6.23 34
@@ -21,7 +21,7 @@ MARCAS = {
   edad=[('18-24', 42279), ('25-34', 33737), ('35-44', 22725), ('45-54', 13634), ('55-64', 8398), ('65+', 4825)],
   reg=[('Managua Department', 40978), ('León Department', 9295), ('Masaya Department', 8782), ('Matagalpa Department', 8765), ('Chinandega Department', 8558), ('Estelí Department', 5796), ('Rivas Department', 5205), ('Nueva Segovia Department', 5202), ('Región Autónoma del Atlántico Sur', 4849), ('Región Autónoma del Atlántico Norte', 4735), ('Jinotega Department', 4407), ('Granada Department', 4400), ('Chontales Department', 4188), ('Carazo Department', 4138), ('Boaco Department', 2912), ('Madriz Department', 2333), ('Río San Juan Department', 1895), ('Unknown', 27)]),
  'Lubriderm': dict(
-  campana='FARMACO_LUBRIDERM_RCH_MANT_NOV_2026', alcance=128868, frecuencia=1.46, cpm=0.16,
+  campana='FARMACO_LUBRIDERM_RCH_MANT_NOV_2026', alcance=109577, frecuencia=1.38, cpm=0.16,
   diario="""2026-11-17 27481 28441 23 3.77 52
 2026-11-18 37952 40613 32 6.52 61
 2026-11-19 35274 37871 29 6.25 58
@@ -38,7 +38,7 @@ MARCAS = {
   edad=[('18-24', 39654), ('25-34', 34866), ('35-44', 25109), ('45-54', 16181), ('55-64', 9961), ('65+', 5945)],
   reg=[('Managua Department', 44035), ('León Department', 9812), ('Masaya Department', 9664), ('Matagalpa Department', 8831), ('Chinandega Department', 8526), ('Estelí Department', 5806), ('Rivas Department', 5721), ('Nueva Segovia Department', 5306), ('Región Autónoma del Atlántico Sur', 5048), ('Granada Department', 4899), ('Región Autónoma del Atlántico Norte', 4849), ('Chontales Department', 4453), ('Jinotega Department', 4333), ('Carazo Department', 4329), ('Boaco Department', 3030), ('Madriz Department', 2301), ('Río San Juan Department', 1880), ('Unknown', 15)]),
  'Hipoglós Sport': dict(
-  campana='FARMACO_HIPOGLOS_SPORT_RCH_MANT_NOV_2026', alcance=42347, frecuencia=1.06, cpm=0.16,
+  campana='FARMACO_HIPOGLOS_SPORT_RCH_MANT_NOV_2026', alcance=7302, frecuencia=1.08, cpm=0.09,
   diario="""2026-11-20 5277 5432 0 0.24 0
 2026-11-21 32912 35609 32 6.1 43
 2026-11-22 3292 3691 1 0.61 1""",
