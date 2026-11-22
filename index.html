@@ -246,7 +246,6 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
     <a href="#m-listerine" data-t="m-listerine" style="--c:var(--c-lis)">Listerine</a>
     <a href="#m-lubriderm" data-t="m-lubriderm" style="--c:var(--c-lub)">Lubriderm</a>
     <a href="#m-hipoglos" data-t="m-hipoglos" style="--c:var(--c-hip)">Hipoglós Sport</a>
-    <a href="#detalle" data-t="detalle">Detalle diario</a>
   </div>
 </nav>
 <main class="wrap">
@@ -284,9 +283,6 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
 
   <div id="marcas"></div>
 
-  <div class="sec" id="detalle"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 9.5h18M3 15h18M9 4v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></i><h2>Detalle diario</h2><span class="sec-line"></span><p>Cifras de cada día por marca</p></div>
-  <div class="dets" id="dets"></div>
-
   <details class="notes">
     <summary>Notas sobre las cifras</summary>
     <ul>
@@ -300,7 +296,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   <footer class="foot"><div class="conf"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" fill="none" stroke="#e8622c" stroke-width="2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" fill="none" stroke="#e8622c" stroke-width="2"/><circle cx="12" cy="15.5" r="1.4" fill="#e8622c"/></svg><p><b>Información confidencial.</b> Propiedad de CCCP UM Nicaragua. Uso interno; no distribuir sin autorización.</p></div></footer>
 </main>
 
-<script src="datos.js?v=202611221752"></script>
+<script src="datos.js?v=202611221755"></script>
 <script>
 (() => {
   const D = window.DG_DATA, M = D.marcas;
@@ -422,9 +418,9 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
         <section class="card s7 bcard"><h3>Audiencia</h3><p class="sub">Alcance por segmento.</p><div class="aud">${audHTML(m)}</div>
           <h3 style="margin-top:18px">Impresiones por plataforma</h3><div class="keys" style="margin-top:8px">${PLATS.map((p) => `<span style="--c:${PCOL[p]}">${p}</span>`).join('')}</div>
           <div class="bplat">${platRow(m.marca + ' · Total', 'Total', m.creativos, col)}${cres.map((c) => platRow(m.marca + ' · ' + c.a.replace(/_/g, ' '), c.a.replace(/_/g, ' '), c.rows, col)).join('')}</div></section>
+        <section class="card s12 bcard"><h3>Detalle diario</h3><div class="tbl-wrap" style="margin-top:10px"><table class="tbl">${tabla(m)}</table></div></section>
       </div></section>`; }).join('');
   document.querySelectorAll('.bplat').forEach(bindRows);
-  document.getElementById('dets').innerHTML = M.map((m) => `<section class="card bcard dcard" style="--c:${COL[m.marca]};--c2:${C2[m.marca]}"><div class="d-h"><img src="img/logos/${LOGO[m.marca]}.png" alt="${m.marca}"><span>${m.T.dias} días · del ${F.fecha(m.T.desde)} al ${F.fecha(ult)}</span></div><div class="tbl-wrap"><table class="tbl">${tabla(m)}</table></div></section>`).join('');
 
   // Navegación
   const links = [...document.querySelectorAll('.nav a')];
