@@ -185,6 +185,22 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
 .bcard .fmt { background: var(--c); }
 .prow { display: grid; grid-template-columns: 170px 1fr 70px; gap: 10px; align-items: center; font-size: 12.5px; margin: 7px 0; cursor: default; }
 .bsec .tbl tr.tot td { color: var(--c2); }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+.kcard { background: #fff; border-radius: var(--radius); border: 1px solid var(--line); border-top: 5px solid var(--c); box-shadow: 0 6px 18px rgba(31, 61, 122, .08); padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+.kc-h { height: 44px; display: flex; align-items: center; }
+.kc-h img { max-height: 36px; max-width: 170px; width: auto; height: auto; }
+.krow { display: grid; gap: 6px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.kl { display: grid; grid-template-columns: 1fr auto; align-items: baseline; column-gap: 10px; }
+.kl span { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.kl b { font-size: 20px; font-weight: 800; grid-row: span 2; text-align: right; }
+.kl small { font-size: 11.5px; color: var(--muted); }
+.kbar { height: 9px; border-radius: 999px; background: color-mix(in srgb, var(--c) 14%, #fff); overflow: hidden; margin-top: 8px; }
+.kbar i { display: block; height: 100%; background: var(--c); border-radius: inherit; }
+.kp { display: block; font-style: normal; font-size: 11.5px; font-weight: 700; color: var(--muted); margin-top: 4px; }
+.kp.ok { color: var(--ok); }
+.kf .kp { margin-top: 0; }
+@media (max-width: 1180px) { .kpis { grid-template-columns: 1fr; } }
+
 @media (max-width: 1180px) { .btiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } .bban { grid-template-columns: auto minmax(0, 1fr); } .bban-th { display: none; } }
 @media (max-width: 760px) { .btiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .bban { grid-template-columns: 1fr; padding: 18px; gap: 14px; } .bban .plate { width: 100%; height: 80px; } .bban-t h2 { font-size: 24px; } .prow { grid-template-columns: 110px 1fr 56px; } }
 
@@ -218,6 +234,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   <div class="wrap">
     <span class="nav-brand">DICEGSA · FÁRMACOS</span>
     <a href="#resumen" data-t="resumen">Resumen</a>
+    <a href="#kpi" data-t="kpi">KPI</a>
     <a href="#entrega" data-t="entrega">Entrega diaria</a>
     <a href="#ubicaciones" data-t="ubicaciones">Ubicaciones</a>
     <a href="#m-listerine" data-t="m-listerine" style="--c:var(--c-lis)">Listerine</a>
@@ -237,6 +254,9 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   </header>
 
   <section class="tiles" id="tiles" aria-label="Indicadores principales"></section>
+
+  <div class="sec" id="kpi"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></i><h2>Avance contra KPI</h2><span class="sec-line"></span><p>KPI por marca: alcance 90K · impresiones 180K · frecuencia 1</p></div>
+  <div class="kpis" id="kpis"></div>
 
   <div class="sec" id="entrega"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></i><h2>Entrega diaria</h2><span class="sec-line"></span><p>Comparativo de las tres marcas</p></div>
   <div class="grid">
@@ -270,7 +290,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   <footer class="foot"><div class="conf"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" fill="none" stroke="#e8622c" stroke-width="2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" fill="none" stroke="#e8622c" stroke-width="2"/><circle cx="12" cy="15.5" r="1.4" fill="#e8622c"/></svg><p><b>Información confidencial.</b> Propiedad de CCCP UM Nicaragua. Uso interno; no distribuir sin autorización.</p></div></footer>
 </main>
 
-<script src="datos.js?v=202611221745"></script>
+<script src="datos.js?v=202611221751"></script>
 <script>
 (() => {
   const D = window.DG_DATA, M = D.marcas;
@@ -304,6 +324,13 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
 
   const tiles = [['Inversión total', F.usd(inv), 'tres marcas', 'var(--cyan)'], ['Impresiones', F.int(imp), 'CPM ' + F.usd(inv / imp * 1000), 'var(--navy)'],
     ['Interacciones', F.int(inter), F.pct2(inter / imp) + ' de interacción', 'var(--cyan)'], ...M.map((m) => ['Alcance ' + m.marca, F.int(m.alcance), 'frecuencia ' + F.d2(m.frecuencia), COL[m.marca]])];
+  const KPI = { alcance: 90000, imp: 180000, frec: 1 };
+  const kbar = (v, k, col) => { const p = v / k; return `<div class="kbar" style="--c:${col}"><i style="width:${Math.min(p, 1) * 100}%"></i></div><em class="kp${p >= 1 ? ' ok' : ''}">${F.pct(p)} del KPI${p >= 1 ? ' ✓' : ''}</em>`; };
+  const frecTxt = (f) => { const d = f - KPI.frec; return Math.abs(d) < .005 ? 'igual al KPI' : (d > 0 ? '+' : '−') + F.d2(Math.abs(d)) + ' sobre KPI'.replace('sobre', d > 0 ? 'sobre' : 'bajo'); };
+  document.getElementById('kpis').innerHTML = M.map((m) => `<section class="kcard" style="--c:${COL[m.marca]}"><div class="kc-h"><img src="img/logos/${LOGO[m.marca]}.png" alt="${m.marca}"></div>
+    <div class="krow"><div class="kl"><span>Alcance</span><b class="num">${F.int(m.alcance)}</b><small>KPI ${F.int(KPI.alcance)}</small></div>${kbar(m.alcance, KPI.alcance, COL[m.marca])}</div>
+    <div class="krow"><div class="kl"><span>Impresiones</span><b class="num">${F.int(m.T.imp)}</b><small>KPI ${F.int(KPI.imp)}</small></div>${kbar(m.T.imp, KPI.imp, COL[m.marca])}</div>
+    <div class="krow kf"><div class="kl"><span>Frecuencia</span><b class="num">${F.d2(m.frecuencia)}</b><small>KPI ${F.d2(KPI.frec)}</small></div><em class="kp">${frecTxt(m.frecuencia)}</em></div></section>`).join('');
   document.getElementById('tiles').innerHTML = tiles.map(([a, b, c, col]) => `<div class="tile" style="--c:${col}"><small>${a}</small><b class="num">${b}</b><span>${c}</span></div>`).join('');
 
   const platOf = (rows) => { const t = {}; rows.forEach((r) => { t[r.plataforma] = (t[r.plataforma] || 0) + r.impresiones; }); const s = Object.values(t).reduce((a, b) => a + b, 0) || 1; return Object.entries(t).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ k, v, p: v / s })); };
@@ -371,13 +398,13 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   const IMG = { LISTERINE_PPL_MANT_V1: 1, LISTERINE_PPL_MANT_V2: 1, LUBRIDERM_PPL_MANT_V1: 1, LUBRIDERM_PPL_MANT_V2: 1, HIPOGLOS_PPL_MANT_V1: 1, HIPOGLOS_PPL_MANT_V2: 1 };
   document.getElementById('marcas').innerHTML = M.map((m) => { const col = COL[m.marca], ads = [...new Set(m.creativos.map((r) => r.anuncio))].sort().reverse();
     const cres = ads.map((a) => { const rows = m.creativos.filter((r) => r.anuncio === a); return { a, rows, imp: sum(rows, 'impresiones'), inter: sum(rows, 'interacciones') }; });
-    const bt = [['Alcance', F.int(m.alcance), 'personas únicas'], ['Impresiones', F.int(m.T.imp), 'frecuencia ' + F.d2(m.frecuencia)], ['Interacciones', F.int(m.T.inter), F.pct2(m.T.tasa) + ' de interacción'],
-      ['Inversión', F.usd(m.T.costo), m.T.dias + ' días al aire'], ['CPM', F.usd(m.T.cpm), 'costo por mil impresiones'], ['Costo por interacción', m.T.cpi == null ? '—' : F.usd(m.T.cpi), 'inversión ÷ interacciones']];
+    const bt = [['Alcance', F.int(m.alcance), kbar(m.alcance, KPI.alcance, 'var(--c)')], ['Impresiones', F.int(m.T.imp), kbar(m.T.imp, KPI.imp, 'var(--c)')], ['Frecuencia', F.d2(m.frecuencia), 'KPI ' + F.d2(KPI.frec) + ' · ' + frecTxt(m.frecuencia)],
+      ['Interacciones', F.int(m.T.inter), F.pct2(m.T.tasa) + ' de interacción' + (m.T.cpi == null ? '' : ' · ' + F.usd(m.T.cpi) + ' c/u')], ['Inversión', F.usd(m.T.costo), m.T.dias + ' días al aire'], ['CPM', F.usd(m.T.cpm), 'costo por mil impresiones']];
     return `<section class="bsec" id="m-${ID[m.marca]}" style="--c:${col};--c2:${C2[m.marca]}">
       <div class="bban b-${ID[m.marca]}"><div class="plate"><img src="img/logos/${LOGO[m.marca]}.png" alt="${m.marca}"></div>
         <div class="bban-t"><small>Campaña de mantenimiento · Alcance</small><h2>${m.marca}</h2><p>Del ${F.fecha(m.T.desde)} al ${F.fecha(ult)}${enCurso ? ' (en curso)' : ''} · ${cres.length} creativos Page Post Link</p></div>
         <div class="bban-th">${cres.map((c) => `<div style="background-image:url('img/${SLUG[m.marca]}_${c.a}.jpg')" role="img" aria-label="${c.a}"></div>`).join('')}</div></div>
-      <div class="btiles">${bt.map(([a, b, c]) => `<div class="tile"><small>${a}</small><b class="num">${b}</b><span>${c}</span></div>`).join('')}</div>
+      <div class="btiles">${bt.map(([a, b, c]) => `<div class="tile"><small>${a}</small><b class="num">${b}</b>${c.startsWith('<') ? c : `<span>${c}</span>`}</div>`).join('')}</div>
       <div class="grid" style="margin-top:var(--gap)">
         <section class="card s5 bcard"><h3>Creativos</h3><p class="sub">% interacción = interacciones ÷ impresiones.</p><div class="cards2">${cres.map((c) => { const key = SLUG[m.marca] + '_' + c.a, tp = platOf(c.rows)[0];
           return `<article class="cre"><div class="thumb">${IMG[key] ? `<img src="img/${key}.jpg" alt="${m.marca} ${c.a}" loading="lazy">` : ''}</div><div class="cre-body"><span class="fmt">Page Post Link</span><div class="cre-name">${c.a.replace(/_/g, ' ')}</div>
