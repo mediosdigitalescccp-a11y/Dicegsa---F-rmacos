@@ -403,7 +403,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
       + [...m.diario].reverse().map((r) => tr(r)).join('') + tr({ alcance: m.alcance, impresiones: m.T.imp, interacciones: m.T.inter, costo: m.T.costo }, true) + '</tbody>'; };
   const IMG = { LISTERINE_PPL_MANT_V1: 1, LISTERINE_PPL_MANT_V2: 1, LUBRIDERM_PPL_MANT_V1: 1, LUBRIDERM_PPL_MANT_V2: 1, HIPOGLOS_PPL_MANT_V1: 1, HIPOGLOS_PPL_MANT_V2: 1 };
   document.getElementById('marcas').innerHTML = M.map((m) => { const col = COL[m.marca], ads = [...new Set(m.creativos.map((r) => r.anuncio))].sort().reverse();
-    const cres = ads.map((a) => { const rows = m.creativos.filter((r) => r.anuncio === a); return { a, rows, imp: sum(rows, 'impresiones'), inter: sum(rows, 'interacciones') }; });
+    const cres = ads.map((a) => { const rows = m.creativos.filter((r) => r.anuncio === a); return { a, rows, imp: sum(rows, 'impresiones'), inter: sum(rows, 'interacciones') }; }).sort((x, y) => y.imp - x.imp || y.inter - x.inter);
     const bt = [['Alcance', F.int(m.alcance), kbar(m.alcance, KPI.alcance, 'var(--c)')], ['Impresiones', F.int(m.T.imp), kbar(m.T.imp, KPI.imp, 'var(--c)')], ['Frecuencia', F.d2(m.frecuencia), 'KPI ' + F.d2(KPI.frec) + ' · ' + frecTxt(m.frecuencia)],
       ['Interacciones', F.int(m.T.inter), F.pct2(m.T.tasa) + ' de interacción' + (m.T.cpi == null ? '' : ' · ' + F.usd(m.T.cpi) + ' c/u')], ['Inversión', F.usd(m.T.costo), m.T.dias + ' días al aire'], ['CPM', F.usd(m.T.cpm), 'costo por mil impresiones']];
     return `<section class="bsec" id="m-${ID[m.marca]}" style="--c:${col};--c2:${C2[m.marca]}">
@@ -412,7 +412,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
         <div class="bban-th">${cres.map((c) => `<div style="background-image:url('img/${SLUG[m.marca]}_${c.a}.jpg')" role="img" aria-label="${c.a}"></div>`).join('')}</div></div>
       <div class="btiles">${bt.map(([a, b, c]) => `<div class="tile"><small>${a}</small><b class="num">${b}</b>${c.startsWith('<') ? c : `<span>${c}</span>`}</div>`).join('')}</div>
       <div class="grid" style="margin-top:var(--gap)">
-        <section class="card s5 bcard"><h3>Creativos</h3><p class="sub">% interacción = interacciones ÷ impresiones.</p><div class="cards2">${cres.map((c) => { const key = SLUG[m.marca] + '_' + c.a, tp = platOf(c.rows)[0];
+        <section class="card s5 bcard"><h3>Creativos</h3><p class="sub">Ordenados de mayor a menor impresiones. % interacción = interacciones ÷ impresiones.</p><div class="cards2">${cres.map((c) => { const key = SLUG[m.marca] + '_' + c.a, tp = platOf(c.rows)[0];
           return `<article class="cre"><div class="thumb">${IMG[key] ? `<img src="img/${key}.jpg" alt="${m.marca} ${c.a}" loading="lazy">` : ''}</div><div class="cre-body"><span class="fmt">Page Post Link</span><div class="cre-name">${c.a.replace(/_/g, ' ')}</div>
           <div class="stats"><div><span>Impresiones</span><b class="num">${F.M(c.imp)}</b></div><div><span>Interacciones</span><b class="num">${F.int(c.inter)}</b></div><div><span>% interacción</span><b class="num">${F.pct2(c.inter / c.imp)}</b></div><div><span>Plataforma principal</span><b>${tp.k} ${F.pct(tp.p)}</b></div></div></div></article>`; }).join('')}</div></section>
         <section class="card s7 bcard"><h3>Audiencia</h3><p class="sub">Alcance por segmento.</p><div class="aud">${audHTML(m)}</div>
