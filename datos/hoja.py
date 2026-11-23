@@ -4,7 +4,7 @@
 # Creativos por día: fecha|anuncio plataforma alcance impresiones interacciones;...
 MARCAS = {
  'Listerine': dict(
-  campana='FARMACO_LISTERINE_RCH_MANT_NOV_2026', alcance=103783, frecuencia=1.39, cpm=0.16,
+  campana='FARMACO_LISTERINE_RCH_MANT_NOV_2026', alcance=148377, frecuencia=1.53, cpm=0.16,
   diario="""2026-11-17 29259 30474 20 4.01 29
 2026-11-18 38941 40484 18 6.58 31
 2026-11-19 35418 37109 19 6.23 34
@@ -23,7 +23,7 @@ MARCAS = {
   edad=[('18-24', 49090), ('25-34', 40314), ('35-44', 27495), ('45-54', 16469), ('55-64', 9950), ('65+', 5758)],
   reg=[('Managua Department', 49415), ('León Department', 10973), ('Masaya Department', 10404), ('Matagalpa Department', 10399), ('Chinandega Department', 9916), ('Estelí Department', 6846), ('Nueva Segovia Department', 6298), ('Rivas Department', 6115), ('Región Autónoma del Atlántico Norte', 5797), ('Región Autónoma del Atlántico Sur', 5711), ('Jinotega Department', 5284), ('Granada Department', 5192), ('Carazo Department', 4925), ('Chontales Department', 4916), ('Boaco Department', 3497), ('Madriz Department', 2700), ('Río San Juan Department', 2310), ('Unknown', 30)]),
  'Lubriderm': dict(
-  campana='FARMACO_LUBRIDERM_RCH_MANT_NOV_2026', alcance=109577, frecuencia=1.38, cpm=0.16,
+  campana='FARMACO_LUBRIDERM_RCH_MANT_NOV_2026', alcance=154432, frecuencia=1.52, cpm=0.16,
   diario="""2026-11-17 27481 28441 23 3.77 52
 2026-11-18 37952 40613 32 6.52 61
 2026-11-19 35274 37871 29 6.25 58
@@ -42,7 +42,7 @@ MARCAS = {
   edad=[('18-24', 46321), ('25-34', 42175), ('35-44', 30049), ('45-54', 19338), ('55-64', 11750), ('65+', 7003)],
   reg=[('Managua Department', 51645), ('León Department', 11592), ('Masaya Department', 11430), ('Matagalpa Department', 10762), ('Chinandega Department', 10168), ('Estelí Department', 7023), ('Rivas Department', 6788), ('Nueva Segovia Department', 6329), ('Región Autónoma del Atlántico Sur', 6082), ('Región Autónoma del Atlántico Norte', 6018), ('Granada Department', 5844), ('Chontales Department', 5328), ('Jinotega Department', 5246), ('Carazo Department', 5241), ('Boaco Department', 3647), ('Madriz Department', 2704), ('Río San Juan Department', 2286), ('Unknown', 19)]),
  'Hipoglós Sport': dict(
-  campana='FARMACO_HIPOGLOS_SPORT_RCH_MANT_NOV_2026', alcance=7302, frecuencia=1.08, cpm=0.09,
+  campana='FARMACO_HIPOGLOS_SPORT_RCH_MANT_NOV_2026', alcance=74563, frecuencia=1.22, cpm=0.16,
   diario="""2026-11-20 5277 5432 0 0.24 0
 2026-11-21 33084 35736 32 6.12 44
 2026-11-22 42012 44526 14 7.4 34
