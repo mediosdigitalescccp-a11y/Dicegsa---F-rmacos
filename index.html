@@ -111,6 +111,8 @@ button, select { font-family: inherit; }
 
 .finds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .find { background: var(--panel-2); border-radius: 12px; padding: 14px; border-left: 4px solid var(--c); font-size: 13px; line-height: 1.5; }
+.find-a { margin: 8px 0 0; padding-top: 8px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 12.5px; }
+.find-a b { color: var(--c); }
 .find small { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; color: var(--c); margin-bottom: 4px; text-transform: uppercase; }
 
 .cards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
@@ -275,7 +277,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
       <div class="chart" id="c-diario"></div>
       <p class="sub" id="diario-nota" style="margin:8px 0 0"></p>
     </section>
-    <section class="card s12"><h3>Hallazgos clave</h3><div class="finds" id="finds" style="margin-top:12px"></div></section>
+    <section class="card s12"><h3>Hallazgos estratégicos</h3><p class="sub">Aprendizajes para creatividad, pauta y momentos de uso de cada marca.</p><div class="finds" id="finds" style="margin-top:12px"></div></section>
   </div>
 
   <div class="sec" id="ubicaciones"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></i><h2>Ubicaciones</h2><span class="sec-line"></span><p>Dónde se vieron los anuncios, por impresiones</p></div>
@@ -367,15 +369,28 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   const lis = M[0], lub = M[1], hip = M[2];
   const top = (m) => { const t = {}; m.creativos.forEach((r) => { t[r.anuncio] = (t[r.anuncio] || 0) + r.impresiones; }); const e = Object.entries(t).sort((a, b) => b[1] - a[1]); const s = e.reduce((a, [, v]) => a + v, 0); return [e[0][0], e[0][1] / s]; };
   const wa = (m) => { const p = platOf(m.creativos).find((x) => x.k === 'WhatsApp'); return p ? p.p : 0; };
-  const finds = [
-    ['Interacciones', COL[byTasa[0].marca], `<b>${byTasa[0].marca}</b> tiene la mejor tasa de interacción: <b>${F.pct2(byTasa[0].T.tasa)}</b> (${F.int(byTasa[0].T.inter)} interacciones), contra ${F.pct2(byTasa[1].T.tasa)} de ${byTasa[1].marca}.`],
-    ['Costo', 'var(--navy)', `Las tres campañas compran alcance a bajo costo: CPM de <b>${F.usd(lis.T.cpm)}</b> en Listerine, <b>${F.usd(lub.T.cpm)}</b> en Lubriderm y <b>${F.usd(hip.T.cpm)}</b> en Hipoglós Sport.`],
-    ['Frecuencia', 'var(--cyan)', `La frecuencia se mantiene baja (Listerine <b>${F.d2(lis.frecuencia)}</b>, Lubriderm <b>${F.d2(lub.frecuencia)}</b>): las campañas priorizan llegar a más personas antes que repetir el mensaje.`],
-    ['Creativos', COL['Listerine'], `En Listerine, <b>${top(lis)[0].replace(/_/g, ' ')}</b> concentra el <b>${F.pct(top(lis)[1])}</b> de las impresiones; en Lubriderm, <b>${top(lub)[0].replace(/_/g, ' ')}</b> lleva el <b>${F.pct(top(lub)[1])}</b>.`],
-    ['WhatsApp', 'var(--c-wa)', `WhatsApp aporta el <b>${F.pct(wa(hip))}</b> de las impresiones de Hipoglós Sport, frente al ${F.pct(wa(lis))} en Listerine y ${F.pct(wa(lub))} en Lubriderm.`],
-    ['Audiencia', COL['Lubriderm'], (() => { const gv = (m, g) => (m.audiencia.find((r) => r.dimension === 'Género' && r.segmento === g) || {}).valor || 0; const muj = M.filter((m) => gv(m, 'Mujer') > gv(m, 'Hombre')).map((m) => m.marca), hom = M.filter((m) => gv(m, 'Mujer') <= gv(m, 'Hombre')).map((m) => m.marca); const y = (a) => { if (a.length < 2) return a[0]; const last = a[a.length - 1]; return a.slice(0, -1).join(', ') + (/^h?[ií](?![aeiouáéó])/i.test(last) ? ' e ' : ' y ') + last; }; return `El público de <b>18-24</b> es el de mayor alcance en las tres marcas. ` + (muj.length ? `${y(muj)} ${muj.length > 1 ? 'llegan' : 'llega'} más a mujeres` + (hom.length ? `; ${y(hom)}, más a hombres.` : '.') : 'Las tres llegan más a hombres.'); })()]
-  ];
-  document.getElementById('finds').innerHTML = finds.map(([k, c, t]) => `<div class="find" style="--c:${c}"><small>${k}</small>${t}</div>`).join('');
+  const finds = (() => {
+    const pr = (rows, f) => { const r = rows.filter(f), i = sum(r, 'impresiones'); return i ? sum(r, 'interacciones') / i * 1000 : 0; };
+    const k1 = (m) => { const i = sum(m.diario, 'impresiones'); return { int: sum(m.diario, 'interacciones') / i * 1000, cl: sum(m.diario, 'clics') / i * 1000 }; };
+    const rk = [...M].sort((a, b) => k1(b).cl - k1(a).cl), best = rk[0], rest = rk.slice(1);
+    const fbM = M.map((m) => pr(m.creativos, (r) => r.plataforma === 'Facebook')), igM = M.map((m) => pr(m.creativos, (r) => r.plataforma === 'Instagram'));
+    const avg = (a) => a.reduce((s, x) => s + x, 0) / a.length;
+    const vers = M.map((m) => { const t = {}; m.creativos.forEach((r) => { const o = t[r.anuncio] ||= { n: r.anuncio, imp: 0, int: 0 }; o.imp += r.impresiones; o.int += r.interacciones; }); const v = Object.values(t).sort((a, b) => b.imp - a.imp), tot = v.reduce((s, x) => s + x.imp, 0); return { m: m.marca, top: v[0], peso: v[0].imp / tot, v }; });
+    const conc = Math.min(...vers.map((v) => v.peso));
+    const ed = (m) => { const e = m.audiencia.filter((r) => r.dimension === 'Edad'), t = sum(e, 'valor'); return sum(e.filter((r) => /^(18|25)/.test(r.segmento)), 'valor') / t; };
+    const fuera = (m) => { const r = m.audiencia.filter((x) => x.dimension === 'Región' && x.segmento !== 'Desconocido'), t = sum(r, 'valor'); return 1 - ((r.find((x) => x.segmento === 'Managua') || {}).valor || 0) / t; };
+    const nm = (a) => a.length < 2 ? a[0] : a.slice(0, -1).join(', ') + (/^h?[ií](?![aeiouáéó])/i.test(a[a.length - 1]) ? ' e ' : ' y ') + a[a.length - 1];
+    const x = (a, b) => b ? nf(1).format(a / b) + ' veces' : '—';
+    return [
+      ['Categoría', COL[best.marca], `<b>${best.marca}</b> genera <b>${nf(2).format(k1(best).cl)}</b> clics y <b>${nf(2).format(k1(best).int)}</b> interacciones por cada mil impresiones, <b>${x(k1(best).cl, avg(rest.map((m) => k1(m).cl)))}</b> el promedio de ${nm(rest.map((m) => m.marca))}: el cuidado de la piel despierta más interés activo.`, `Probar en ${best.marca} un mensaje con beneficio concreto (hidratación, piel seca en verano) y un llamado a comprar en farmacia.`],
+      ['Plataforma', 'var(--navy)', `Facebook es el canal de conversación: <b>${nf(2).format(avg(fbM))}</b> interacciones por cada mil impresiones frente a <b>${nf(2).format(avg(igM))}</b> en Instagram; WhatsApp y Threads suman cobertura, pero casi no generan respuesta.`, 'Dejar Instagram y WhatsApp para alcance y concentrar en Facebook las piezas que buscan interacción o clic.'],
+      ['Creatividad', 'var(--cyan)', `El algoritmo concentró la entrega en una sola versión: ${vers.map((v) => `${v.m} <b>${F.pct(v.peso)}</b> en ${v.top.n.replace(/^PPL_MANT_/, '')}`).join(', ')}. La otra pieza tuvo poca exposición para compararlas con justicia.`, 'Lanzar las nuevas versiones como prueba A/B con presupuesto dividido para saber qué mensaje funciona por marca.'],
+      ['Momentos de uso', COL['Hipoglós Sport'] || 'var(--cyan)', `Las tres marcas llegan sobre todo a <b>18-34 años</b> (${M.map((m) => `${m.marca} ${F.pct(ed(m))}`).join(', ')}), un público activo con rutinas claras de cuidado personal.`, 'Conectar cada marca con su momento: Hipoglós Sport con deporte y gimnasio, Listerine con después de comer y citas, Lubriderm con sol y temporada seca.'],
+      ['Frecuencia', 'var(--navy)', `La frecuencia ronda <b>${nf(1).format(Math.min(...M.map((m) => m.frecuencia)))}–${nf(1).format(Math.max(...M.map((m) => m.frecuencia)))}</b>: el mantenimiento está priorizando cobertura nueva sobre repetición del mensaje.`, 'En momentos clave (quincenas, inicio de verano) subir la frecuencia a 2.5–3 para reforzar recordación.'],
+      ['Cobertura nacional', COL['Lubriderm'], `Al menos el <b>${F.pct(Math.min(...M.map(fuera)))}</b> del alcance de cada marca está fuera de Managua (León, Matagalpa, Masaya y Chinandega a la cabeza).`, 'Usar mensajes con presencia en farmacias locales y piezas regionalizadas para los departamentos con más alcance.']
+    ];
+  })();
+  document.getElementById('finds').innerHTML = finds.map(([k, c, t, o]) => `<div class="find" style="--c:${c}"><small>${k}</small>${t}<p class="find-a"><b>Oportunidad:</b> ${o}</p></div>`).join('');
 
   // Ubicaciones
   const PLATS = ['Facebook', 'Instagram', 'WhatsApp', 'Threads'];
